@@ -46,7 +46,7 @@ class RealEstate
     #[Assert\GreaterThanOrEqual(150000)]
     private ?int $price = null;
 
-    #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'imageName', size: 'imageSize')]
+    #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
     #[ORM\Column(nullable: true)]

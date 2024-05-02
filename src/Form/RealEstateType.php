@@ -69,7 +69,7 @@ class RealEstateType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-primary mt-5'
+                    'class' => 'btn btn-secondary mt-5'
                 ],
                 'label' =>  'Submit it!'
             ])

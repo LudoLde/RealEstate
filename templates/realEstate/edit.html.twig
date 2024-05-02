@@ -1,0 +1,37 @@
+{% extends ('base.html.twig') %}
+{% block body %}
+<div class="container w-50">
+       {{ form_start(form) }}
+    <div class="mt-4">
+        {{ form_label(form.name) }}
+        {{ form_errors(form.name) }}
+        {{ form_widget(form.name) }}
+    </div>
+    <div class="mt-4">
+        {{ form_label(form.cityLocation) }}
+        {{ form_errors(form.cityLocation) }}
+        {{ form_widget(form.cityLocation) }}
+    </div>
+    <div class="mt-4 w-25">
+        {{ form_label(form.zipCode) }}
+        {{ form_errors(form.zipCode) }}
+        {{ form_widget(form.zipCode) }}
+    </div>
+    <div class="mt-4">
+        {{ form_label(form.description) }}
+        {{ form_errors(form.description) }}
+        {{ form_widget(form.description) }}
+    </div>
+    <div class="mt-4 w-25">
+        {{ form_label(form.price) }}
+        {{ form_errors(form.price) }}
+        {{ form_widget(form.price) }}
+    </div>
+    <div class="mt-4">
+        {{ form_row(form.imageFile) }}
+    </div>
+    {{ form_row(form.submit, { 'label': 'Edit !' }) }}
+{{ form_end(form) }}
+</div>
+ 
+{% endblock %}
