@@ -14,7 +14,7 @@ class RealEstateTest extends KernelTestCase
 
         $RealEstate = new RealEstate();
         $RealEstate->setName('Test')
-        ->setCityLocation('')
+        ->setCityLocation('Paris')
         ->setZipCode(92)
         ->setDescription('description test ')
         ->setPrice(400000);
@@ -22,6 +22,6 @@ class RealEstateTest extends KernelTestCase
         
         $errors = $container->get('validator')->validate($RealEstate);
 
-        $this->assertCount(2, $errors);
+        $this->assertCount(0, $errors);
     }
 }

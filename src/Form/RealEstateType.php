@@ -65,7 +65,7 @@ class RealEstateType extends AbstractType
                 'label' => 'Upload some pictures !',
                 'label_attr' => [
                     'class' => 'form-label mt-3'
-                ]
+                ], 'required' => false
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [

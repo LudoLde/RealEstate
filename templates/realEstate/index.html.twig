@@ -4,6 +4,7 @@
 
 {% block body %}
 <div class="container d-flex justify-content-center flex-wrap column-gap-5">
+  <h3>Most recents real estates:</h3>
 {% for realEstate in realEstates %}
 <div class="card mt-5 w-25">
     <h3 class="card-header">ID: {{ realEstate.id}}</h3>
@@ -14,12 +15,14 @@
       <h5 class="card-title">{{ realEstate.name}}</h5>
     </div>
 {% endif %}
-    <img src="{{ vich_uploader_asset (realEstate, 'imageFile') }}">
+    <img src="{{ vich_uploader_asset (realEstate, 'imageFile') }}" height="230px">
     <div class="card-body">
         <p class="card-text">{{ realEstate.description }}</p>
     </div>
     <div class="card-body">
         <p class="card-text">Price: {{ realEstate.price }} $</p>
+        <a class="btn btn-secondary" href="{{ path('realEstate.edit', {'id': realEstate.id}) }}">Edit 🖊️</a>
+        <a class="btn btn-danger" href="{{ path('realEstate.delete', {'id': realEstate.id}) }}">Delete ❌</a>
     </div>
     <div class="card-footer text-muted">
        {{ realEstate.createdAt | date("m/Y") }}

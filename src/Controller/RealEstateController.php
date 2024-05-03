@@ -10,6 +10,7 @@ use App\Entity\RealEstate;
 use App\Repository\RealEstateRepository;
 use App\Form\RealEstateType;
 use Doctrine\ORM\EntityManagerInterface;
+
 class RealEstateController extends AbstractController
 {
     #[Route('/', name: 'realEstate.home', methods:['GET', 'POST'])]
@@ -64,5 +65,21 @@ class RealEstateController extends AbstractController
         return $this->render('realEstate/edit.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/real_estate/delete/{id}', name: 'realEstate.delete', methods:['GET', 'POST'])]
+    public function delete(EntityManagerInterface $manager, RealEstateRepository $repository, int $id): Response
+    {
+        $realEstate = $repository->findOneBy(["id" => $id]);
+
+        if($id !== $id){
+            return $this->redirectToRoute('realEstate.home');
+        }
+
+            $manager->remove($realEstate);
+            $manager->flush();
+
+            return $this->redirectToRoute('realEstate.home');
+            
     }
 }

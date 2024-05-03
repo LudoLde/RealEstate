@@ -32,26 +32,26 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/real_estate/edit/{id}', name: 'realEstate.edit', methods:['GET', 'POST'])]
-    public function edit(Request $request, EntityManagerInterface $manager, RealEstateRepository $repository, int $id): Response
+    #[Route('/real_estate/user/{id}', name: 'user.edit', methods:['GET', 'POST'])]
+    public function edit(Request $request, EntityManagerInterface $manager, UserRepository $repository, int $id): Response
     {
-        $realEstate = $repository->findOneBy(["id" => $id]);
+        $user = $repository->findOneBy(["id" => $id]);
 
         if($id !== $id){
             return $this->redirectToRoute('realEstate.home');
         }
-        $form = $this->createForm(RealEstateType::class, $realEstate);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            $realEstate = $form->getData();
+            $user = $form->getData();
 
-            $manager->persist($realEstate);
+            $manager->persist($user);
             $manager->flush();
 
             return $this->redirectToRoute('realEstate.home');
             
         }
-        return $this->render('realEstate/edit.html.twig', [
+        return $this->render('user/edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }

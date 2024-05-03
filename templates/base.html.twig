@@ -11,27 +11,34 @@
         {% block header %}
             <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Real Estate 92</a>
+    <a class="navbar-brand" href="{{ path('realEstate.home') }}">Real Estate 92</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarColor02">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Home
+          <a class="nav-link" href="{{ path('realEstate.home') }}">Home
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link" href="{{ path('realEstate.new') }}">Add new 🏡 🏬</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Pricing</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
       </ul>
     </div>
+    {% if app.user is null %}
+    <div class="d-flex me-3">
+          <a class="nav-link" href="{{ path('security.login') }}">LogIn</a>
+    </div>
+    {% else %}
+    <div class="d-flex align-items-center column-gap-4 me-3">
+        <a>{{ app.user.username }}</a>
+          <a class="nav-link text-body-emphasis" href="{{ path('security.logout') }}">LogOut</a>
+    </div>
+    {% endif %}
   </div>
 </nav>
         {% endblock %}

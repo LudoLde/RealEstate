@@ -5,9 +5,9 @@
 {% block body %}
 
 <div class="container mt5">
-<form action="{{ path('security.login') }}" method="POST">
+<form action="{{ path('security.login') }}" method="POST" name="loginForm">
     <div>
-      <label for="username" class="form-label mt-4">Email address</label>
+      <label for="username" class="form-label mt-4">Email adress</label>
       <input type="email" class="form-control" id="username" name="_username" placeholder="Enter email">
     </div>
     <div>
