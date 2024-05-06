@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class RouteTest extends WebTestCase
 {
-    public function testHomePage(): void
+    public function testPage(): void
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/');
@@ -27,9 +27,10 @@ class RouteTest extends WebTestCase
     public function testEditPage(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/real_estate/edit/*');
+        $id = 6;
+        $crawler = $client->request('GET', '/real_estate/edit/' . $id);
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('.btn', 'Edit');
+        $this->assertSelectorTextContains('.btn', 'Edit !');
     }
 }

@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\RealEstate;
 use App\Repository\RealEstateRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class RealEstateApiController extends AbstractController
 {
@@ -25,6 +26,7 @@ class RealEstateApiController extends AbstractController
                 'zipCode'=> $realEstates->getzipCode(),
                 'description'=> $realEstates->getdescription(),
                 'price'=> $realEstates->getprice(),
+                
             ];
         }
         
@@ -37,13 +39,19 @@ class RealEstateApiController extends AbstractController
         $realEstate = json_decode($request->getContent(), true);
         $newRealEstate = new RealEstate();
         
-        if(isset($realEstates['name'])){
+        if($request->files->get('imageFile')){
+            $imageData = $request->files->get('imageFile');
+        }
+
+        if(isset($realEstate['name'])){
             $newRealEstate->setName($realEstate['name']);
         }
+        
         $newRealEstate->setcityLocation($realEstate['cityLocation'])
                        ->setzipCode($realEstate['zipCode'])
                        ->setdescription($realEstate['description'])
-                       ->setprice($realEstate['price']); 
+                       ->setprice($realEstate['price']);
+        $newRealEstate->setImageFile($imageData);
 
                        $manager->persist($newRealEstate);
                        $manager->flush();        
