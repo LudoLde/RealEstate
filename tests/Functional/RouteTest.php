@@ -12,7 +12,7 @@ class RouteTest extends WebTestCase
         $crawler = $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h3', 'Most recents real estates:');
+        $this->assertSelectorTextContains('h3', 'Hey !');
     }
 
     public function testNewPage(): void

@@ -5,7 +5,11 @@
 {% block body %}
 
 <div class="container mt5">
+       {% if error %}
+            <div class="alert alert-danger mt-5">{{ error.messageKey | trans(error.messageData, 'security') }}</div>
+       {% endif %}
 <form action="{{ path('security.login') }}" method="POST" name="loginForm">
+  <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
     <div>
       <label for="username" class="form-label mt-4">Email adress</label>
       <input type="email" class="form-control" id="username" name="_username" placeholder="Enter email">

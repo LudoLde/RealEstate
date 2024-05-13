@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -40,6 +42,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password;
+
+    /**
+     * @var Collection<int, RealEstate>
+     */
+    #[ORM\OneToMany(targetEntity: RealEstate::class, mappedBy: 'user')]
+    private Collection $realEstate;
+
+    public function __construct()
+    {
+        $this->realEstate = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -138,6 +151,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, RealEstate>
+     */
+    public function getRealEstate(): Collection
+    {
+        return $this->realEstate;
+    }
+
+    public function addRealEstate(RealEstate $realEstate): static
+    {
+        if (!$this->realEstate->contains($realEstate)) {
+            $this->realEstate->add($realEstate);
+            $realEstate->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRealEstate(RealEstate $realEstate): static
+    {
+        if ($this->realEstate->removeElement($realEstate)) {
+            // set the owning side to null (unless already changed)
+            if ($realEstate->getUser() === $this) {
+                $realEstate->setUser(null);
+            }
+        }
+
+        return $this;
     }
 
 }

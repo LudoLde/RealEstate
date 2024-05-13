@@ -10,10 +10,13 @@ use App\Entity\RealEstate;
 use App\Repository\RealEstateRepository;
 use App\Form\RealEstateType;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class RealEstateController extends AbstractController
 {
-    #[Route('/', name: 'realEstate.home', methods:['GET', 'POST'])]
+    
+    #[Route('/home', name: 'realEstate.home', methods:['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function index(RealEstateRepository $repository): Response
     {
         $realEstates = $repository->findAll();
@@ -23,7 +26,9 @@ class RealEstateController extends AbstractController
         ]);
     }
 
+    
     #[Route('/real_estate/new', name: 'realEstate.new', methods:['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function new(Request $request, EntityManagerInterface $manager): Response
     {
         $realEstate = new RealEstate();
@@ -32,6 +37,7 @@ class RealEstateController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $realEstate = $form->getData();
 
+            $realEstate->setUser($this->getUser());
             $manager->persist($realEstate);
             $manager->flush();
 
@@ -43,7 +49,9 @@ class RealEstateController extends AbstractController
         ]);
     }
 
+    
     #[Route('/real_estate/edit/{id}', name: 'realEstate.edit', methods:['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function edit(Request $request, EntityManagerInterface $manager, RealEstateRepository $repository, int $id): Response
     {
         $realEstate = $repository->findOneBy(["id" => $id]);
@@ -67,7 +75,9 @@ class RealEstateController extends AbstractController
         ]);
     }
 
+    
     #[Route('/real_estate/delete/{id}', name: 'realEstate.delete', methods:['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function delete(EntityManagerInterface $manager, RealEstateRepository $repository, int $id): Response
     {
         $realEstate = $repository->findOneBy(["id" => $id]);

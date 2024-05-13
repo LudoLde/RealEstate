@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FormCreateRealEstateTest extends WebTestCase
 {
-    public function testFormRealEstate(): void
+    public function testFormRealEstateIsValid(): void
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/real_estate/new');
@@ -29,6 +29,9 @@ class FormCreateRealEstateTest extends WebTestCase
 
         //Verifier le statut HTTP
         $this->assertResponseStatusCodeSame(Response::HTTP_FOUND);
+
+        $client->followRedirect();
+        $this->assertRouteSame('realEstate.home');
         
     }
 }

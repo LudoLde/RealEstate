@@ -24,7 +24,7 @@ class UserController extends AbstractController
             $manager->persist($user);
             $manager->flush();
 
-            return $this->redirectToRoute('realEstate.home');
+            return $this->redirectToRoute('security.login');
         }
 
         return $this->render('user/new.html.twig', [

@@ -20,18 +20,18 @@ class RealEstateApiTest extends WebTestCase
         $this->assertJson($client->getResponse()->getContent());
     }
 
-    public function testNewRealEstate(): void
-    {
-        $client = static::createClient();
+     public function testNewRealEstate(): void
+     {
+         $client = static::createClient();
 
-        $imagePath = '/Users/ludzy/Desktop/php92/RealEstateProject/public/images/realEstate/img-2040-6630e2a95fa89203080724.jpeg';
-        $imageFile = new UploadedFile($imagePath, 'img-2040-6630e2a95fa89203080724.jpeg');
+        $imagePath = '/Users/ludzy/Desktop/php92/RealEstateProject/public/images/realEstate/maison-de-ville-avec-piscine-a-bordeaux-663a33131ab4c031040493.webp';
+        $imageFile = new UploadedFile($imagePath, 'maison-de-ville-avec-piscine-a-bordeaux-663a33131ab4c031040493.webp');
         
         $data = [
-            'name' => 'Maison Basque',
-            'cityLocation' => 'Bayonne',
-            'zipCode' => 64,
-            'description' => 'eriiucnvnb jbjej zighioz hezio he',
+            'name' => 'Maison 15',
+            'cityLocation' => 'Paris',
+            'zipCode' => 75,
+            'description' => 'zighiozgnninj gienj untin iniunie nnren',
             'price' => 630000
         ];
 
@@ -46,10 +46,10 @@ class RealEstateApiTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $id = 1;
+        $id = 16;
 
         $data = [
-            'name' => 'Belle maison vue sur champs',
+            'cityLocation' => 'Bordeaux'
         ];
 
         $client->request('PUT', '/api/editReal/' . $id, [], [], ['CONTENT_TYPE' => 'application/json'], json_encode($data));
@@ -62,7 +62,7 @@ class RealEstateApiTest extends WebTestCase
     public function testDeleteRealEstate(): void
     {
         $client = static::createClient();
-        $realEstateId = 4;
+        $realEstateId = 12;
 
         $client->request('DELETE', '/api/deleteReal/' . $realEstateId);
 

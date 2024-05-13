@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class RealEstateApiController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/api/getReal', name: 'api.getReal', methods:['GET'])]
     public function getReal(RealEstateRepository $repository): JsonResponse
     {
@@ -33,6 +34,7 @@ class RealEstateApiController extends AbstractController
         return new JsonResponse($dataRealEstate);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/api/newReal', name: 'api.newReal', methods:['POST'])]
     public function newReal(Request $request, EntityManagerInterface $manager): JsonResponse
     {
@@ -59,6 +61,7 @@ class RealEstateApiController extends AbstractController
         return new JsonResponse('Bien créé !', 200);
     }
 
+    #[Security("is_granted('ROLE_ADMIN') and user === app.user")]
     #[Route('/api/editReal/{id}', name: 'api.editReal', methods:['PUT'])]
     public function editReal(Request $request, EntityManagerInterface $manager, RealEstateRepository $repository,int $id): JsonResponse
     {
@@ -84,6 +87,7 @@ class RealEstateApiController extends AbstractController
         return new JsonResponse('Bien modifié !', 200);
     }
 
+    #[Security("is_granted('ROLE_ADMIN') and user === app.user")]
     #[Route('/api/deleteReal/{id}', name: 'api.deleteReal', methods:['DELETE'])]
     public function deleteReal(EntityManagerInterface $manager, RealEstateRepository $repository,int $id): JsonResponse
     {

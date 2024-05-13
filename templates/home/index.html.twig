@@ -1,0 +1,39 @@
+{% extends ('base.html.twig') %}
+
+{% block body %}
+<div class="container mt-5">
+    <h3 class="mt-3">Hey !<br>Welcome to our new website to discover a lot of houses and flats around the world !</h3>
+    <p class="mt-5">Here you can share with our community and show your beautifull real Estates.</p>
+    <p>At first you must to create a new account to access in the private session and you will add your first biens.</p>
+</div>
+<div>
+    <h3>Some of recents Real Estates</h3>
+<div>
+        {% for realEstate in realEstates %}
+    <div class="card mt-5 w-25">
+        <h3 class="card-header bg-primary">ID: {{ realEstate.id}}</h3>
+        {% if not realEstate.name %}
+        <div class="hidden"></div>
+        {% else %}
+        <div class="card-body">
+        <h5 class="card-title">{{ realEstate.name}}</h5>
+        </div>
+    {% endif %}
+        <img src="{{ vich_uploader_asset (realEstate, 'imageFile') }}" height="230px">
+        <div class="card-body">
+            <p class="card-text">{{ realEstate.description }}</p>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Price: {{ realEstate.price }} $</p>
+            {% if app.user %}
+            <a class="btn btn-info" href="{{ path('fav.new', {'id': realEstate.id})}}">Add to Favourites !</a>
+            {% endif %}
+        </div>
+        <div class="card-footer text-muted bg-primary">
+        {{ realEstate.createdAt | date("m/Y") }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+{% endblock %}

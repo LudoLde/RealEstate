@@ -58,6 +58,9 @@ class RealEstate
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'realEstate')]
+    private ?User $user;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -172,4 +175,17 @@ class RealEstate
 
         return $this;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+    
 }
