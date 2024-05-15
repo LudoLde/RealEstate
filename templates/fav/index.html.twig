@@ -20,8 +20,8 @@
             <p class="card-text">{{ fav.realEstateId.description }}</p>
         </div>
         <div class="card-body">
-            <p class="card-text">Price: {{ fav.realEstateId.price }} $</p>
-            <a class="btn btn-danger" href="{{ path('fav.delete', {'id': fav.realEstateId.id})}}">Delete</a>
+            <p class="card-text">Prix: {{ fav.realEstateId.price }} $</p>
+            <a class="btn btn-danger" href="{{ path('fav.delete', {'id': fav.realEstateId.id})}}">Supprimer des favoris ❌</a>
         </div>
         <div class="card-footer text-muted bg-primary">
         {{ fav.realEstateId.createdAt | date("m/Y") }}

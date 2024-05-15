@@ -1,4 +1,5 @@
 {% extends ('base.html.twig') %}
+{% block title %}Real Estate 92 - Créer un nouveau bien{% endblock %}
 {% block body %}
 <div class="container w-50">
        {{ form_start(form) }}
@@ -30,7 +31,7 @@
     <div class="mt-4">
         {{ form_row(form.imageFile) }}
     </div>
-    {{ form_row(form.submit, { 'label': 'Submit me' }) }}
+    {{ form_row(form.submit, { 'label': 'Créer votre bien' }) }}
 {{ form_end(form) }}
 </div>
  

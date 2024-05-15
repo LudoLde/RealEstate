@@ -12,7 +12,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 class UserController extends AbstractController
 {
-    #[Route('/real_estate/user/new', name: 'user.new', methods:['GET', 'POST'])]
+    #[Route('/user/new', name: 'user.new', methods:['GET', 'POST'])]
     public function userNew(Request $request, EntityManagerInterface $manager): Response
     {
         $user = new User();
@@ -32,7 +32,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/real_estate/user/{id}', name: 'user.edit', methods:['GET', 'POST'])]
+    #[Route('/user/{id}', name: 'user.edit', methods:['GET', 'POST'])]
     public function edit(Request $request, EntityManagerInterface $manager, UserRepository $repository, int $id): Response
     {
         $user = $repository->findOneBy(["id" => $id]);

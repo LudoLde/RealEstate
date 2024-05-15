@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class RealEstateController extends AbstractController
 {
     
-    #[Route('/home', name: 'realEstate.home', methods:['GET', 'POST'])]
+    #[Route('/real_estate/home', name: 'realEstate.home', methods:['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
     public function index(RealEstateRepository $repository): Response
     {
@@ -41,6 +41,7 @@ class RealEstateController extends AbstractController
             $manager->persist($realEstate);
             $manager->flush();
 
+            $this->addFlash('success', 'Votre bien à été créé ✅');
             return $this->redirectToRoute('realEstate.home');
         }
 
@@ -67,6 +68,7 @@ class RealEstateController extends AbstractController
             $manager->persist($realEstate);
             $manager->flush();
 
+            $this->addFlash('success', 'Modifications effectuées ✅ !');
             return $this->redirectToRoute('realEstate.home');
             
         }
@@ -89,6 +91,7 @@ class RealEstateController extends AbstractController
             $manager->remove($realEstate);
             $manager->flush();
 
+            $this->addFlash('success', 'Bien supprimé ❌ !');
             return $this->redirectToRoute('realEstate.home');
             
     }

@@ -21,7 +21,7 @@ class UserType extends AbstractType
                 'attr' => [
                     'class' => 'form-control mt-2'
                 ],
-                'label' =>  'Username:',
+                'label' =>  'Pseudo:',
                 'label_attr' => [
                     'form-label mt-3'
                 ]
@@ -41,7 +41,7 @@ class UserType extends AbstractType
                     'attr' => [
                         'class' => 'form-control mt-2'
                     ],
-                    'label' =>  'Password:',
+                    'label' =>  'mot de passe:',
                     'label_attr' => [
                         'form-label mt-3'
                     ]
@@ -50,7 +50,7 @@ class UserType extends AbstractType
                         'attr' => [
                             'class' => 'form-control mt-2'
                         ],
-                        'label' =>  'Repeat password:',
+                        'label' =>  'Confirmer le mot de passe:',
                         'label_attr' => [
                             'form-label mt-3'
                         ]

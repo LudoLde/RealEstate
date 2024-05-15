@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Bienvenue -- Accueil{% endblock %}</title>
         {% block stylesheets %}
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/lumen/bootstrap.min.css" integrity="sha512-N6Wwrw2+w72hDf55YI/j+y3JUXpO7qTuo+kilvcpFJqEabBFA3nurVZineUcg4+op0dJLrzQXcNNif9Gf/ECPA==" crossorigin="anonymous" referrerpolicy="no-referrer" />        {% endblock %}
     </head>
@@ -18,17 +18,17 @@
       <ul class="navbar-nav me-auto">
        {% if app.user %}
         <li class="nav-item">
-          <a class="nav-link" href="{{ path('realEstate.new') }}">Add new estate 🏡 🏬</a>
+          <a class="nav-link" href="{{ path('realEstate.new') }}">Ajouter un Bien 🏡 🏬</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ path('realEstate.home') }}">My Real Estates</a>
+          <a class="nav-link" href="{{ path('realEstate.home') }}">Mes Biens</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ path('fav.show') }}">Favourites 😍</a>
+          <a class="nav-link" href="{{ path('fav.show') }}">Favoris 😍</a>
         </li>
         {% else %}
          <li class="nav-item">
-          <a class="nav-link" href="{{ path('user.new') }}">Create a new account 🏡
+          <a class="nav-link" href="{{ path('user.new') }}">Créer un compte 🏡
           </a>
         </li>
        {% endif %}   
@@ -36,12 +36,12 @@
     </div>
     {% if app.user is null %}
     <div class="d-flex me-3 text-white">
-          <a class="nav-link" href="{{ path('security.login') }}">LogIn</a>
+          <a class="nav-link" href="{{ path('security.login') }}">Se connecter</a>
     </div>
     {% else %}
     <div class="d-flex align-items-center column-gap-4 me-3 ">
-        <p class=".text-dark-emphasis m-0">Hello {{ app.user.username }}</p>
-          <a class="btn btn-danger " href="{{ path('security.logout') }}">Logout</a>
+        <p class=".text-dark-emphasis m-0">Bonjour {{ app.user.username }}</p>
+          <a class="btn btn-danger " href="{{ path('security.logout') }}">Déconnexion</a>
     </div>
     {% endif %}
   </div>

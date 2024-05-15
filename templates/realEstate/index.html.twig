@@ -1,8 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Real Estate 92 - Accueil{% endblock %}
+{% block title %}Real Estate 92 - Mes biens{% endblock %}
 
 {% block body %}
+{% for message in app.flashes('login') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
 <div class="container d-flex justify-content-center flex-wrap column-gap-5 mb-5">
 {% for realEstate in realEstates %}
 <div class="card mt-5 w-25">
@@ -19,9 +29,9 @@
         <p class="card-text">{{ realEstate.description }}</p>
     </div>
     <div class="card-body">
-        <p class="card-text">Price: {{ realEstate.price }} $</p>
-        <a class="btn btn-info" href="{{ path('realEstate.edit', {'id': realEstate.id}) }}">Edit 🖊️</a>
-        <a class="btn btn-danger" href="{{ path('realEstate.delete', {'id': realEstate.id}) }}">Delete ❌</a>
+        <p class="card-text">Prix: {{ realEstate.price }} $</p>
+        <a class="btn btn-info" href="{{ path('realEstate.edit', {'id': realEstate.id}) }}">Editer 🖊️</a>
+        <a class="btn btn-danger" href="{{ path('realEstate.delete', {'id': realEstate.id}) }}">Supprimer ❌</a>
     </div>
     <div class="card-footer text-muted bg-primary">
        {{ realEstate.createdAt | date("m/Y") }}
