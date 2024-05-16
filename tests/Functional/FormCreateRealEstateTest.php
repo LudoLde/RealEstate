@@ -12,16 +12,17 @@ class FormCreateRealEstateTest extends WebTestCase
         $client = static::createClient();
         $crawler = $client->request('GET', '/real_estate/new');
 
+        file_put_contents('debug_output.html', $crawler->html());
         //Récupérer le formulaire
-        $submitButton = $crawler->selectButton('Submit me');
+        $submitButton = $crawler->selectButton('real_estate_submit');
         $form = $submitButton->form();
 
         $formData = [
-            'real_estate[name]' => 'Bel appartement',
+            'real_estate[name]' => 'Test',
             'real_estate[cityLocation]' => 'Paris',
             'real_estate[zipCode]' => 75,
             'real_estate[description]' => 'jiu jkhrgh irhguih ueh iuh giu',
-            'real_estate[price]' => 780000,
+            'real_estate[price]' => 780000
         ];
 
         //Soumettre le formulaire

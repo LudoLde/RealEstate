@@ -16,7 +16,7 @@ class LoginTest extends WebTestCase
 
         $crawler = $client->request('GET', $urlGenerator->generate('security.login'));
 
-        $submitButton = $crawler->selectButton('Log In');
+        $submitButton = $crawler->selectButton('Se connecter');
         $form = $submitButton->form();
 
         $formData = [
@@ -42,11 +42,11 @@ class LoginTest extends WebTestCase
 
         $crawler = $client->request('GET', $urlGenerator->generate('security.login'));
 
-        $submitButton = $crawler->selectButton('Log In');
+        $submitButton = $crawler->selectButton('Se connecter');
         $form = $submitButton->form();
 
         $formData = [
-            '_username' => 'samson.dominique@fernandes.fr',
+            '_username' => 'test92@test.fr',
             '_password' => 'passwor' 
         ];
 

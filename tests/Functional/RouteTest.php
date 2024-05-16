@@ -12,7 +12,7 @@ class RouteTest extends WebTestCase
         $crawler = $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h3', 'Hey !');
+        $this->assertSelectorTextContains('h3', 'Voici les dernieres tendances:');
     }
 
     public function testNewPage(): void
@@ -21,16 +21,16 @@ class RouteTest extends WebTestCase
         $crawler = $client->request('GET', '/real_estate/new');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('.btn', 'Submit me');
+        $this->assertSelectorTextContains('.btn', 'Créer votre bien');
     }
 
     public function testEditPage(): void
     {
         $client = static::createClient();
-        $id = 6;
+        $id = 11;
         $crawler = $client->request('GET', '/real_estate/edit/' . $id);
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('.btn', 'Edit !');
+        $this->assertSelectorTextContains('.btn', 'Editer 🖊️');
     }
 }

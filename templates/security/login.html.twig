@@ -3,11 +3,6 @@
 {% block title %}Real Estate 92 -- Connexion{% endblock %}
 
 {% block body %}
-{% for message in app.flashes('logout') %}
-    <div class="alert alert-danger">
-        {{ message }}
-    </div>
-{% endfor %}
 <div class="container mt5">
        {% if error %}
             <div class="alert alert-danger mt-5">{{ error.messageKey | trans(error.messageData, 'security') }}</div>

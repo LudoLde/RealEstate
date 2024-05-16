@@ -15,12 +15,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class RealEstateController extends AbstractController
 {
     
-    #[Route('/real_estate/home', name: 'realEstate.home', methods:['GET', 'POST'])]
+    #[Route('/real_estate/home/{id}', name: 'realEstate.home', methods:['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
-    public function index(RealEstateRepository $repository): Response
+    public function index(RealEstateRepository $repository, int $id, EntityManagerInterface $manager): Response
     {
-        $realEstates = $repository->findAll();
+        $user = $this->getUser();
 
+        if(!$user){
+            return $this->redirectToRoute('home');
+        }
+        $realEstates = $user->getRealEstate();
+        
+        
         return $this->render('realEstate/index.html.twig', [
             'realEstates' => $realEstates,
         ]);

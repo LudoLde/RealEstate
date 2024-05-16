@@ -21,10 +21,13 @@
           <a class="nav-link" href="{{ path('realEstate.new') }}">Ajouter un Bien 🏡 🏬</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ path('realEstate.home') }}">Mes Biens</a>
+          <a class="nav-link" href="{{ path('realEstate.home', {'id': app.user.id}) }}">Mes Biens</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ path('fav.show') }}">Favoris 😍</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('user.edit-password', {'id': app.user.id}) }}">Modifier votre compte</a>
         </li>
         {% else %}
          <li class="nav-item">

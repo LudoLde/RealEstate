@@ -13,10 +13,7 @@ class SecurityController extends AbstractController
     #[Route('/login', name: 'security.login')]
     public function login(AuthenticationUtils $authenticationUtils, Request $request): Response
     {
-        
-            $this->addFlash('login', 'Félicitations vous êtes actuellement connecté !');
-        
-
+    
         return $this->render('security/login.html.twig', [
             'error' => $authenticationUtils->getLastAuthenticationError(),
             'last_username' => $authenticationUtils->getLastUsername()
