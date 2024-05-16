@@ -20,7 +20,7 @@ class RealEstateType extends AbstractType
                 'attr' => [
                     'class' => 'form-control mt-2'
                 ],
-                'label' =>  'Title: (optional)',
+                'label' =>  'Titre: (facultatif)',
                 'label_attr' => [
                     'form-label mt-3'
                 ]
@@ -29,7 +29,7 @@ class RealEstateType extends AbstractType
                 'attr' => [
                     'class' => 'form-control mt-2'
                 ],
-                'label' =>  'City:',
+                'label' =>  'Ville:',
                 'label_attr' => [
                     'form-label mt-3'
                 ]
@@ -38,7 +38,7 @@ class RealEstateType extends AbstractType
                 'attr' => [
                     'class' => 'form-control mt-2'
                 ],
-                'label' =>  'ZipCode:',
+                'label' =>  'Code Postal:',
                 'label_attr' => [
                     'form-label mt-3'
                 ]
@@ -56,22 +56,22 @@ class RealEstateType extends AbstractType
                 'attr' => [
                     'class' => 'form-control mt-2'
                 ],
-                'label' =>  'Price: ($)',
+                'label' =>  'Prix: ($)',
                 'label_attr' => [
                     'form-label mt-3'
                 ]
             ])
             ->add('imageFile', VichImageType::class, [
-                'label' => 'Upload some pictures !',
+                'label' => 'Ajouter une photo !',
                 'label_attr' => [
                     'class' => 'form-label mt-3'
-                ]
+                ], 'required' => false
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-primary mt-5'
                 ],
-                'label' =>  'Submit it!'
+                'label' =>  'Créer !'
             ])
         ;
     }

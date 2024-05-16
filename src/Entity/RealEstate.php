@@ -46,7 +46,7 @@ class RealEstate
     #[Assert\GreaterThanOrEqual(150000)]
     private ?int $price = null;
 
-    #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'imageName', size: 'imageSize')]
+    #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
     #[ORM\Column(nullable: true)]
@@ -57,6 +57,9 @@ class RealEstate
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\ManyToOne(inversedBy: 'realEstate')]
+    private ?User $user;
 
     public function __construct()
     {
@@ -172,4 +175,17 @@ class RealEstate
 
         return $this;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+    
 }

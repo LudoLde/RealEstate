@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FavController!{% endblock %}
+
+{% block body %}
+
+<div class="container mt-5">
+ {% for fav in favs %}
+    <div class="card mt-5 w-25">
+        <h3 class="card-header bg-primary">ID: {{ fav.realEstateId.id}}</h3>
+        {% if not fav.realEstateId.name %}
+        <div class="hidden"></div>
+        {% else %}
+        <div class="card-body">
+        <h5 class="card-title">{{ fav.realEstateId.name}}</h5>
+        </div>
+    {% endif %}
+        <img src="{{ vich_uploader_asset (fav.realEstateId, 'imageFile') }}" height="230px">
+        <div class="card-body">
+            <p class="card-text">{{ fav.realEstateId.description }}</p>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Prix: {{ fav.realEstateId.price }} $</p>
+            <a class="btn btn-danger" href="{{ path('fav.delete', {'id': fav.realEstateId.id})}}">Supprimer des favoris ❌</a>
+        </div>
+        <div class="card-footer text-muted bg-primary">
+        {{ fav.realEstateId.createdAt | date("m/Y") }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends ('base.html.twig') %}
+{% block body %}
+<div class="container w-50 mt-4">
+       {{ form_start(form) }}
+    
+    <div class="mt-4">
+        {{ form_label(form.username) }}
+        {{ form_errors(form.username) }}
+        {{ form_widget(form.username) }}
+    </div>
+    <div class="mt-4">
+        {{ form_label(form.email) }}
+        {{ form_errors(form.email) }}
+        {{ form_widget(form.email) }}
+    </div>
+    <div class="mt-4">
+        {{ form_errors(form.plainPassword) }}
+        {{ form_widget(form.plainPassword) }}
+    </div>
+    {{ form_row(form.submit, { 'label': 'Créer un compte' }) }}
+{{ form_end(form) }}
+</div>
+ 
+{% endblock %}
