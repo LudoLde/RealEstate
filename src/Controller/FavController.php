@@ -38,14 +38,17 @@ class FavController extends AbstractController
     }
 
     #[Route('/fav', name: 'fav.show', methods:['GET'])]
-    public function showFav(IsFavouriteRepository $repository): Response
+    public function showFav(IsFavouriteRepository $repository, EntityManagerInterface $manager): Response
     {
         
         if(!$this->isGranted('ROLE_USER')){
             throw new AccessDeniedException('Access denied');
         }
-        
-        $favs = $repository->findAll();
+        $user = $this->getUser();
+        $userId = $user->getId();
+
+        $favs = $repository->findBy(['userId' => $userId]);
+
         return $this->render('fav/index.html.twig', [
             'favs' => $favs
         ]);
