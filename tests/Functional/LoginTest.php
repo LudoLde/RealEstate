@@ -29,7 +29,7 @@ class LoginTest extends WebTestCase
         $this->assertResponseStatusCodeSame(Response::HTTP_FOUND);
 
         $client->followredirect();
-        $this->assertRouteSame('realEstate.home');
+        $this->assertRouteSame('home');
 
     }
 
